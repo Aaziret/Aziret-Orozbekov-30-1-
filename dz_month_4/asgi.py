@@ -1,5 +1,5 @@
 """
-ASGI config for dz_month_4 project.
+ASGI config for hw project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dz_month_4.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hw.settings')
 
 application = get_asgi_application()

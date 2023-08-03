@@ -1,5 +1,5 @@
 """
-URL configuration for dz_month_4 project.
+URL configuration for hw project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,12 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-from posts.views import main_view, products_view
-
+from shops import  views
+from user.views import  register_view , login_view , logout_view
+from django.conf.urls.static import  static
+from hw import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main_view),
-    path('products/', products_view)
+    path('', views.main_view),
+    path('shops/', views.shops_view),
+    path('shops/<int:id>/',views.shops_d_view),
+    path('shops/create/', views.create_product_view),
+    path('category/', views.category_view),
+    path('category/create_category/', views.create_category_view),
+    path('user/register/', register_view),
+    path('user/login/', login_view),
+    path('user/logout/', logout_view),
+
+
+
+
 
 ]
+urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

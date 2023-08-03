@@ -1,13 +1,34 @@
 from django.db import models
 
 
-class Product(models.Model):
-    image = models.ImageField(blank=True, null=True)
-    title = models.CharField(max_length=128)
-    discription = models.TextField()
-    rate = models.FloatField()
-    create_date = models.DateTimeField(auto_now_add=True)
-    modified_date = models.DateTimeField(auto_now=True)
+class Category(models.Model):
+    title = models.CharField(max_length=200)
+    create_data = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+
+class Product(models.Model):
+    img = models.ImageField(blank=True, null=True)
+    title = models.CharField(max_length=24)
+    description = models.TextField(blank=True, null=True)
+    rate = models.FloatField()
+    prize = models.FloatField(max_length=1000000)
+    create_data = models.DateTimeField(auto_now_add=True)
+    modified_data = models.DateTimeField(auto_now=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    phone_number = models.FloatField()
+
+
+    def __str__(self):
+        return self.title
+
+
+class Comment(models.Model):
+    text = models.CharField(max_length=255)
+    name = models.CharField(max_length=20)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.text}-> {self.product.title}'
